@@ -183,6 +183,42 @@
   </nav>
 </main></section>
 
+<section id="portfolio" class="py-5">
+<h1 class="display-3 animate__animated animate__fadeInDown" style="text-align:center; padding:20px 0px;">Our Portfolio</h1>
+ <div class="gallery">
+        <img src="image1.jpg" alt="Image 1" class="gallery-item" onclick="openModal();currentSlide(1)">
+        <img src="image2.jpg" alt="Image 2" class="gallery-item" onclick="openModal();currentSlide(2)">
+        <img src="image3.jpg" alt="Image 3" class="gallery-item" onclick="openModal();currentSlide(3)">
+        <img src="image4.jpg" alt="Image 4" class="gallery-item" onclick="openModal();currentSlide(4)">
+    </div>
+
+    <!-- The Modal/Lightbox -->
+    <div id="myModal" class="modal">
+        <span class="close cursor" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div class="mySlides">
+                <div class="numbertext">1 / 4</div>
+                <img src="image1.jpg" style="width:100%">
+            </div>
+            <div class="mySlides">
+                <div class="numbertext">2 / 4</div>
+                <img src="image2.jpg" style="width:100%">
+            </div>
+            <div class="mySlides">
+                <div class="numbertext">3 / 4</div>
+                <img src="image3.jpg" style="width:100%">
+            </div>
+            <div class="mySlides">
+                <div class="numbertext">4 / 4</div>
+                <img src="image4.jpg" style="width:100%">
+            </div>
+            <!-- Next/previous controls -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+</section>
+
 	<section id="contact" class="py-5">
 	 <div class="container mt-5">
 	 <div class="row">
@@ -227,6 +263,33 @@
             <p class="mt-2">Contact us: <a href="mailto:contact@desainkreasi.com" class="text-white">contact@desainkreasi.com</a></p>
         </div>
     </footer>
+ <button id="backToTopBtn" title="Go to top">
+        <img src="rocket-icon.png" alt="Rocket Icon" class="rocket-icon">
+    </button>	
+<script>
+// Get the button
+let mybutton = document.getElementById("backToTopBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+mybutton.onclick = function() {
+    scrollToTop();
+}
+
+function scrollToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
     <!-- Bootstrap JS and dependencies -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -272,5 +335,38 @@ function activate(e) {
 
 document.addEventListener('click',activate,false);
 	</script>
+<script>
+function openModal() {
+    document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+}
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("demo");
+    let captionText = document.getElementById("caption");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex-1].style.display = "block";
+}
+</script>	
 </body>
 </html>
